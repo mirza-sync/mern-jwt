@@ -5,8 +5,22 @@ import generateToken from "../utils/generateToken.js"
 // @desc Auth user/set token
 // route POST api/users/auth
 // @access Public
-const authUser = expressAsyncHandler((req, res) => {
-    res.status(200).json({ message: 'Auth user' })
+const authUser = expressAsyncHandler(async (req, res) => {
+    const { email, password } = req.body
+
+    const user = await User.findOne({ email })
+
+    if (user && (await user.matchPassword(password))) {
+        generateToken(res, user._id)
+        res.status(201).json({
+            _id: user.id,
+            name: user.name,
+            email: user.email,
+        })
+    } else {
+        res.status(400)
+        throw new Error(`Invalid email or password`)
+    }
 })
 
 // @desc Register a new user
