@@ -7,7 +7,7 @@ Just curious how JWT works. Lets do it from scratch.
     2. Then, create a middleware which will protect the route. Every time the protected route got hit, we execute a function to decode the token with the same secret-key/public-key.
     3. Query the userID from the decoded token. If found, then user is authorized.
     4. If user not found or token expired, throw an error.
-    5. Token will be deleted from browser cookie one user logs out.
+    5. Token will be deleted from browser cookie once user logs out.
 
 - JWT is a good way of tracking the currently authenticated user since the token is persisted in user's browser. Hence, a hacker need to have physical access to the user's laptop to actually get the token.
 - I think JWT is the go to standard when doing authentication. I guess 2FA and services like [Clerk](https://clerk.com/) also implements JWT under the hood.
