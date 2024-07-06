@@ -1,4 +1,5 @@
 import { Button, Card, Container } from "react-bootstrap"
+import { LinkContainer } from "react-router-bootstrap"
 
 const Hero = () => {
   return (
@@ -11,8 +12,12 @@ const Hero = () => {
             It also uses Redux Toolkit and React Bootstrap libraries.
           </p>
           <div className="d-flex">
-            <Button href="/login" variant="primary" className="me-3">Sign In</Button>
-            <Button href="/register" variant="secondary">Sign Up</Button>
+            <LinkContainer to="/login">
+              <Button variant="primary" className="me-3">Sign In</Button>
+            </LinkContainer>
+            <LinkContainer to="/register">
+              <Button variant="secondary">Sign Up</Button>
+            </LinkContainer>
           </div>
         </Card>
       </Container>
