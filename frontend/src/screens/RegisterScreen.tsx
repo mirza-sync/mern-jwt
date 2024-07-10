@@ -1,13 +1,16 @@
+import { Label } from "@radix-ui/react-label"
 import { useState } from "react"
-import FormContainer from "../components/FormContainer"
-import { Button, Col, Form, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import { Button } from "../components/ui/button"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../components/ui/card"
+import { Input } from "../components/ui/input"
+import FormContainer from "../components/FormContainer"
 
 const RegisterScreen = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmpassword, setConfirmPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -16,53 +19,29 @@ const RegisterScreen = () => {
 
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="my-2" controlId="name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group className="my-2" controlId="email">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group className="my-2" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group className="my-2" controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirm Password"
-            value={password}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Button type="submit" variant="primary" className="mt-3">Sign Up</Button>
-
-        <Row className="py-3">
-          <Col>
-            Already have an account? <Link to="/login">Login</Link>
-          </Col>
-        </Row>
-      </Form>
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl">Sign Up</CardTitle>
+          <CardDescription>Create a new account and lorem ipsum dolor sit amet...</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-4">
+          <div className="grid gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="m@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="password">Password</Label>
+            <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <Input id="confirmPassword" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full bg-[#8e2de2] text-white hover:bg-[#7c25c9]">Sign Up</Button>
+        </CardFooter>
+      </Card>
     </FormContainer>
   )
 }
