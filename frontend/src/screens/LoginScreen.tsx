@@ -1,18 +1,38 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "../components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../components/ui/card"
 import { Label } from "@radix-ui/react-label"
 import { Input } from "../components/ui/input"
 import FormContainer from "../components/FormContainer"
+import { useDispatch, useSelector } from "react-redux"
+import { useLoginMutation } from "../slices/usersApiSlice"
+import { setCredentials } from "../slices/authSlice"
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const [login, { isLoading }] = useLoginMutation()
+  const { userInfo } = useSelector((state: any) => state.auth)
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/')
+    }
+  }, [userInfo])
+
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    console.log("Submit")
+    try {
+      const res = await login({email, password }).unwrap()
+      dispatch(setCredentials({...res}))
+    } catch (error: any) {
+      console.log(error?.data?.message || error.error)
+    }
   }
 
   return (
@@ -33,7 +53,7 @@ const LoginScreen = () => {
           </div>
         </CardContent>
         <CardFooter>
-          <Button className="w-full bg-[#8e2de2] text-white hover:bg-[#7c25c9]">Login</Button>
+          <Button className="w-full bg-[#8e2de2] text-white hover:bg-[#7c25c9]" onClick={(e) => handleSubmit(e)}>Login</Button>
         </CardFooter>
       </Card>
     </FormContainer>

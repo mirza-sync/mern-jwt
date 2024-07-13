@@ -21,6 +21,7 @@ Just curious how JWT works. Lets do it from scratch.
 - I got stuck after installing a shadUi component. So my vite configuration uses `./` relative path for the imports. However shadUI uses `@/` alias. The `@/components` works but the `@lib/utils` doesn't. Tried to tinker around with `vite.config.ts` and `tsconfig.josn` but I'm unable to resolve the issue. Current workaround is to just import from `../../lib/utils` instead. Not pretty, but I don't want to waste time on this.
 - Last time I mentioned that I just wanted to write CSS class and don't want to waste time learning the UI components. Unfortunately shadUi is full of those components. So I still need install each of the components seperately and learn to use it. I'm really contradicting myself right now LOL. It still uses tailwind classes for the styling tho.
 - Last time I work with redux in my previous company, it was already setup and I just need to import the part that I wanted to use. Time time I'm setting it up from scratch and it indeed have bunch of boilerplates that I don't really know what it does. "I was today years old" when I finally experience the struggle of redux.
+- My Typescript Intellisense can't infer the data type for the attributes in the redux's slices. I'll just cast it to type `any`. Maybe will figure out the types later on. Let's focus on making things work.
 
 ## Reference
 Tutorial: [MERN Crash Course | JWT Authentication, Redux Toolkit, Deployment & More](https://www.youtube.com/watch?v=R4AhvYORZRY)"
