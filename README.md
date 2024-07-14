@@ -22,6 +22,7 @@ Just curious how JWT works. Lets do it from scratch.
 - Last time I mentioned that I just wanted to write CSS class and don't want to waste time learning the UI components. Unfortunately shadUi is full of those components. So I still need install each of the components seperately and learn to use it. I'm really contradicting myself right now LOL. It still uses tailwind classes for the styling tho.
 - Last time I work with redux in my previous company, it was already setup and I just need to import the part that I wanted to use. Time time I'm setting it up from scratch and it indeed have bunch of boilerplates that I don't really know what it does. "I was today years old" when I finally experience the struggle of redux.
 - My Typescript Intellisense can't infer the data type for the attributes in the redux's slices. I'll just cast it to type `any`. Maybe will figure out the types later on. Let's focus on making things work.
+- So when we set jwt's `httpOnly` to `true`, the cookie will be automagically passed on every request. So we don't need get it from localStorage and set up bearer token stuff. Pretty cool.
 
 ## Reference
 Tutorial: [MERN Crash Course | JWT Authentication, Redux Toolkit, Deployment & More](https://www.youtube.com/watch?v=R4AhvYORZRY)"
