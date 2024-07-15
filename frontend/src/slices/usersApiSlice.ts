@@ -1,4 +1,5 @@
 import { apiSlice } from "./apiSlice";
+import { logout } from "./authSlice";
 
 const USERS_URL = '/api/users'
 
@@ -10,8 +11,14 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: credential,
             })
-        })
+        }),
+        logout: builder.mutation({
+            query: () => ({
+                url: `${USERS_URL}/logout`,
+                method: 'POST',
+            })
+        }),
     })
 })
 
-export const { useLoginMutation }: any = usersApiSlice
+export const { useLoginMutation, useLogoutMutation }: any = usersApiSlice

@@ -1,9 +1,25 @@
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useLogoutMutation } from "../slices/usersApiSlice"
+import { useNavigate } from "react-router-dom"
+import { logout } from "../slices/authSlice"
 
 
 const Header = () => {
   const { userInfo } = useSelector((state: any) => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [logoutApiCall] = useLogoutMutation()
+
+  const handleLogout = async () => {
+    try {
+      await logoutApiCall().unwrap()
+      dispatch(logout())
+      navigate('/login')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <header className="w-100 h-[10vh] flex p-8 border-b-2">
@@ -19,7 +35,7 @@ const Header = () => {
               type="button"
               className="bg-red-500 hover:bg-red-600 text-white font-bold p-2 rounded"
             >
-              <FaSignOutAlt />
+              <FaSignOutAlt onClick={handleLogout} />
             </button>
           </div>
         ) : (
