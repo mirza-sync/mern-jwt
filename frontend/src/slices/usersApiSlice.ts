@@ -1,5 +1,4 @@
 import { apiSlice } from "./apiSlice";
-import { logout } from "./authSlice";
 
 const USERS_URL = '/api/users'
 
