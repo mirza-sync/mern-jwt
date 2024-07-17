@@ -29,8 +29,8 @@ const LoginScreen = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     try {
-      const res = await login({email, password }).unwrap()
-      dispatch(setCredentials({...res}))
+      const res = await login({ email, password }).unwrap()
+      dispatch(setCredentials({ ...res }))
     } catch (error: any) {
       toast.error(error?.data?.message || error.error)
     }
@@ -54,7 +54,13 @@ const LoginScreen = () => {
           </div>
         </CardContent>
         <CardFooter>
-          <Button className="w-full bg-[#8e2de2] text-white hover:bg-[#7c25c9]" onClick={(e) => handleSubmit(e)}>Login</Button>
+          <Button
+            className="w-full bg-[#8e2de2] text-white hover:bg-[#7c25c9]"
+            onClick={(e) => handleSubmit(e)}
+            disabled={isLoading}
+          >
+            Login
+          </Button>
         </CardFooter>
       </Card>
     </FormContainer>
