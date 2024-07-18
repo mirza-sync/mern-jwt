@@ -63,11 +63,11 @@ const RegisterScreen = () => {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" placeholder="What's your password?" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Input id="password" type="password" placeholder="What's your secret? 🙈" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="confirmPassword">Confirm Password</Label>
-            <Input id="confirmPassword" type="password" placeholder="Re-enter your password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+            <Input id="confirmPassword" type="password" placeholder="Hold on, what's your secret again? 🙉" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
           </div>
         </CardContent>
         <CardFooter>
